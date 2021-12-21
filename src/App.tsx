@@ -1,23 +1,28 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import {Text, View, ReactJSCanvas} from './Canvas';
+
+const screen1 = new ReactJSCanvas();
+screen1.onLoad().fetch('https://google.com?q=wix').cache()
+
+const ui = () => {
+  return View([Text('Mendy'), Text('Edri')]).backgroundColor('red').width(130).height(220)
+}
+
+const text = () => {
+  return View([Text('Mendy'), Text('Edri')]).size(100).backgroundColor('green').padding(20);
+}
+
+const jsx = screen1.draw(text());
+
+// TODO: Export viewable to make it used by others for custom ui 
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <p>Run Canvas:</p>
+        {jsx}
       </header>
     </div>
   );
