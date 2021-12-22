@@ -13,7 +13,11 @@ const text = () => {
   return View([Text('Mendy'), Text('Edri')]).size(100).backgroundColor('green').padding(20);
 }
 
-const jsx = screen1.draw(text());
+const single = () => {
+  return View().size(100).backgroundColor('pink').padding(20);
+}
+
+const jsx = screen1.draw(single());
 
 // TODO: Export viewable to make it used by others for custom ui 
 

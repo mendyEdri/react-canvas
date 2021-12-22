@@ -4,8 +4,8 @@ import {Viewable, ViewTypes} from '../../Views/BaseView';
 import {Textable} from '../../Views';
 
 
-const mapViewToReact = (view: Viewable) => {
-    switch (view.type) {
+const mapViewToReact = (view: Viewable,) => {
+    switch (view?.type) {
         case ViewTypes.view: 
             return React.createElement('div', {style: {...view.map.style}}, 'DIV');
         case ViewTypes.text: 

@@ -11,7 +11,7 @@ export class View extends BaseView implements Viewable {
 
     addAsChildren = (view?: Viewable[] | Viewable) => {
         if (Array.isArray(view)) {
-            this.children?.concat(view);
+            this.children = this.children?.concat(view);
         } else {
             this.children?.push(view as Viewable);
         }
