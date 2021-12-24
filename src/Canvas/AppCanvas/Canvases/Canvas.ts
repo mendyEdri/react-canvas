@@ -29,15 +29,21 @@ export abstract class BaseCanvas implements Canvasable {
     abstract drawer: Drawer;
     abstract api?: Api | undefined;
     protected stack = new Stack<ActionType>();
+
+    private getJSX = (views: Viewable[] | undefined = []): any => {
+        let jsx = [];
+        for (const item of views) {
+            let children = [];
+            if (item?.children !== undefined) {
+                children = this.getJSX(item.children);
+            }
+            jsx.push(this.drawer.draw(item, children));
+        }
+        return jsx;
+    }
     
     private drawRecursive = (view: Viewable) => {
-        const jsx = this.drawer.draw(view);
-        console.log('jsx:', jsx.props.children);
-
-        for (const v of view.children || []) {
-            // jsx.push(this.drawer.draw(v));
-            jsx.props.children = this.drawer.draw(v)
-        }
+        let jsx = this.drawer.draw(view, this.getJSX(view.children));
         return jsx;
     }
 
